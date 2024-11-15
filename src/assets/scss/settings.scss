@@ -1,0 +1,5 @@
+@use 'vuetify/settings' with (
+  $toolbar-title-font-size: 1.5em,
+  $snackbar-content-padding: 0px,
+  $text-field-border-radius: 400px,
+);

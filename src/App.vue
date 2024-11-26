@@ -8,6 +8,5 @@
 <style lang="scss" scoped>
 #app {
   width: 100%;
-  height: 100vh;
 }
 </style>

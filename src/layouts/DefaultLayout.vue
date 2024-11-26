@@ -30,13 +30,14 @@ const display = ref(useDisplay());
 @import "@/assets/scss/variables";
 
 .DashboardLayout {
-  padding: 0 16px 0px 20px;
+  padding: 0 16px 0 20px;
   background-color: $yakka-primary-100;
   overflow: hidden;
 
+
   &__content {
     overflow: hidden;
-    height: 100vh;
+    height: calc(100vh - 1rem);
     border-radius: 0 16px 16px 0;
     background-color: $yakka-primary-light;
   }

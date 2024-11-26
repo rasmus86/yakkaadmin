@@ -2,7 +2,7 @@
   <v-app-bar class="MainHeader" height="90" :flat="true">
     <template #prepend>
       <router-link
-          :to="{ name: 'DashboardPage' }"
+          :to="{ name: 'HomeView' }"
           class="MainHeader__brand ml-1"
       >
         <v-avatar size="50">

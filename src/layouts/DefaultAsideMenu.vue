@@ -15,7 +15,7 @@
           color="blue-grey-lighten-5"
           rounded="xl"
           title="Dashboard"
-          :to="{ name: 'DashboardPage' }"
+          :to="{ name: 'HomeView' }"
           exact
       />
       <v-list-item
@@ -24,7 +24,7 @@
           color="yellow-grey-lighten-5"
           rounded="xl"
           title="Map"
-          :to="{ name: 'DashboardPage' }"
+          :to="{ name: 'MapView' }"
           exact
       />
       <v-list-item
@@ -33,7 +33,7 @@
           color="yellow-grey-lighten-5"
           rounded="xl"
           title="Jobs"
-          :to="{ name: 'DashboardPage' }"
+          :to="{ name: 'JobView' }"
           exact
       />
       <v-list-item
@@ -42,7 +42,16 @@
           color="yellow-grey-lighten-5"
           rounded="xl"
           title="Timesheet"
-          :to="{ name: 'DashboardPage' }"
+          :to="{ name: 'TimesheetView' }"
+          exact
+      />
+      <v-list-item
+          :prepend-icon="mdiClockTimeSeven"
+          base-color="yellow-grey-darken-2"
+          color="yellow-grey-lighten-5"
+          rounded="xl"
+          title="Chat"
+          :to="{ name: 'ChatView' }"
           exact
       />
     </v-list>
@@ -94,7 +103,6 @@ const onLeaveFocus = () => {
   }
 
   &.v-navigation-drawer {
-    height: 100vh !important;
     border-radius: 16px 0 0 16px;
     padding: 8px 5px 16px 10px;
   }
@@ -186,7 +194,7 @@ const onLeaveFocus = () => {
 
           &--active {
             .v-list-item__prepend > .v-icon ~ .v-list-item__spacer {
-              width: 0px !important;
+              width: 0 !important;
             }
 
             display: flex;

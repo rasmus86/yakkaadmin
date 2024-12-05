@@ -1,8 +1,10 @@
 import {IAuthStore} from "@/interfaces/auth/auth-store.interface.ts";
 import {defineStore} from 'pinia';
-import {auth} from "@/firebase.ts";
+import {auth, db} from "@/firebase.ts";
 import {signInWithEmailAndPassword} from 'firebase/auth';
+import {doc, getDoc,} from "firebase/firestore";
 import router from "@/router";
+import {IUser} from "@/interfaces/user/user-store.interface.ts";
 
 const INITIAL_STATE: IAuthStore = {
     loginForm: {
@@ -15,6 +17,7 @@ const INITIAL_STATE: IAuthStore = {
         email: null,
         phoneNumber: null,
     },
+    user: undefined
 };
 
 export const useAuthStore = defineStore({
@@ -28,9 +31,25 @@ export const useAuthStore = defineStore({
         },
         async login() {
             if (this.loginForm.email && this.loginForm.password) {
-                await signInWithEmailAndPassword(auth, this.loginForm.email, this.loginForm.password).then(() => {
-                    router.push({name: 'ChatView'});
-                })
+                try {
+                    const data = await signInWithEmailAndPassword(auth, this.loginForm.email, this.loginForm.password);
+                    console.log('User signed in:', data.user);
+
+                    const userDocRef = doc(db, 'Users', data.user.uid);
+                    const userDocSnap = await getDoc(userDocRef);
+
+                    if (userDocSnap.exists()) {
+                        const user = {id: userDocSnap.id, ...userDocSnap.data()};
+                        this.user = user as IUser;
+                        await router.push({name: 'ChatView'});
+                    } else {
+                        console.log("No such user!");
+                        return null;
+                    }
+
+                } catch (error) {
+                    console.error("Error signing in:", error);
+                }
             }
         },
         async getCurrentUser() {

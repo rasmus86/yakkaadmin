@@ -58,12 +58,12 @@
 <script setup lang="ts">
 import {onMounted, ref, computed} from "vue";
 import {useUser} from "@/composables/useUser.ts";
-import {IUser} from "@/interfaces/user/user-store.interface.ts";
 import {useChat} from "@/composables/useChat.ts";
 import {useAuth} from "@/composables/useAuth.ts";
 import {IMessage} from "@/interfaces/chat/chat-store.interface.ts";
 import MessageBody from "@/components/chat/MessageBody.vue";
 import {generateChildId} from "@/utils/core.ts";
+import {IUser} from "@/interfaces/user/user-store.interface.ts";
 
 const {handleCurrentUser, currentUser} = useAuth()
 const {handleGetUsers, users} = useUser()

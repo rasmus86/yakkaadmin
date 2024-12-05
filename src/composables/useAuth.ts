@@ -6,7 +6,7 @@ import {AuthStore, useAuthStore} from "@/stores/auth-store.ts";
 export const useAuth = () => {
 
     const authStore: AuthStore = useAuthStore();
-    const {loginForm, currentUser} = storeToRefs(authStore);
+    const {loginForm, currentUser, user} = storeToRefs(authStore);
 
 
     const accessToken = ref('')
@@ -21,6 +21,11 @@ export const useAuth = () => {
             loading.value = false;
         }
     };
+
+
+    const isAdmin = (): boolean => {
+        return user.value?.type === 'Admin';
+    }
 
     const handleAuthLogin = async () => {
         try {
@@ -37,6 +42,7 @@ export const useAuth = () => {
         loginForm,
         currentUser,
         handleAuthLogin,
-        handleCurrentUser
+        handleCurrentUser,
+        isAdmin
     }
 }

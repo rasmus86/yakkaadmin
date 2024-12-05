@@ -28,7 +28,8 @@ const INITIAL_STATE: IChatStore = {
         messages: [],
     },
     sendMessageSuccess: false,
-    userSelected: undefined
+    userSelected: undefined,
+
 };
 
 export const useChatStore = defineStore({
@@ -46,13 +47,11 @@ export const useChatStore = defineStore({
             const groupDocRef = doc(db, 'GroupChat', id);
             const messagesCollectionRef = collection(groupDocRef, 'Messages');
 
-            let unsubscribeGroup: () => void;
-            let unsubscribeMessages: () => void;
 
             const messagesQuery = query(messagesCollectionRef, orderBy('datetime', 'asc')); // Change 'asc' to 'desc' if needed
 
             // Listen to the GroupMessages document
-            unsubscribeGroup = onSnapshot(
+            this.unsubscribeGroup  = onSnapshot(
                 groupDocRef,
                 (docSnap) => {
                     if (docSnap.exists()) {
@@ -79,7 +78,7 @@ export const useChatStore = defineStore({
                 }
             );
 
-            unsubscribeMessages = onSnapshot(
+            this.unsubscribeMessages = onSnapshot(
                 messagesQuery,
                 (snapshot: QuerySnapshot<DocumentData>) => {
                     if (!snapshot.empty) {

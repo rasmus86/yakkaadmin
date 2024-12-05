@@ -7,6 +7,8 @@ export interface IChatStore {
     groupMessage: IGroupMessage;
     sendMessageSuccess: boolean;
     userSelected: IUser | undefined;
+    unsubscribeGroup?: () => void; // Optional because they may not be set initially
+    unsubscribeMessages?: () => void;
 }
 
 export interface IGroupMessage {

@@ -6,7 +6,7 @@ import {ref} from "vue";
 export const useUser = () => {
 
     const userStore: UserStore = useUserStore();
-    const {users} = storeToRefs(userStore);
+    const {users,} = storeToRefs(userStore);
 
 
     const loading = ref<boolean>(false)

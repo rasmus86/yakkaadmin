@@ -1,7 +1,7 @@
 <template class="message-body--wrapper">
   <div v-if="isReceiver" class="message-body--wrapper__user">
     <v-avatar size="30">
-      <img :src="user?.image" :alt="user?.name">
+      <img :src="user?.image" :alt="user?.first_name">
     </v-avatar>
   </div>
   <div class="message-body--wrapper__message mb-2" :class="isReceiver ? 'grey' : 'yellow'">
@@ -12,9 +12,9 @@
 
 <script setup lang="ts">
 import {IMessage} from "@/interfaces/chat/chat-store.interface.ts";
-import {IUser} from "@/interfaces/user/user-store.interface.ts";
 import {PropType, defineProps} from "vue";
 import {useTimeAgo} from "@/composables/useTimeAgo.ts";
+import {IUser} from "@/interfaces/user/user-store.interface.ts";
 
 const props = defineProps({
   message: {

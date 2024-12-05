@@ -3,11 +3,23 @@ import LoginView from "@/views/LoginView.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
-        path: '/',
+        path: '/login',
         name: 'login',
         component: LoginView,
         meta: {
-            requiredUnauth: true,
+            requiresAuth: false,
+            roles: ['Guest'],
+        },
+    },
+    {
+        path: '/',
+        component: () => import('@/views/JobView.vue'),
+        name: 'job',
+        meta: {
+            requiresAuth: false,
+            title: 'Dashboard',
+            roles: ['Guest'],
+
         },
     },
     {
@@ -22,8 +34,9 @@ const routes: Array<RouteRecordRaw> = [
                         component: () => import('@/views/HomeView.vue'),
                         name: 'HomeView',
                         meta: {
+                            requiresAuth: true,
                             title: 'Dashboard',
-                            role: 'Guest',
+                            roles: ['Admin'],
                         },
                     },
                     {
@@ -31,8 +44,9 @@ const routes: Array<RouteRecordRaw> = [
                         component: () => import('@/views/UploadFileView.vue'),
                         name: 'UploadView',
                         meta: {
+                            requiresAuth: true,
                             title: 'Dashboard',
-                            role: 'Guest',
+                            roles: ['Admin'],
                         },
                     },
                     {
@@ -40,8 +54,9 @@ const routes: Array<RouteRecordRaw> = [
                         component: () => import('@/views/MapView.vue'),
                         name: 'MapView',
                         meta: {
+                            requiresAuth: true,
                             title: 'Dashboard',
-                            role: 'Guest',
+                            roles: ['Admin'],
                         },
                     },
                     {
@@ -49,8 +64,9 @@ const routes: Array<RouteRecordRaw> = [
                         component: () => import('@/views/JobView.vue'),
                         name: 'JobView',
                         meta: {
+                            requiresAuth: true,
                             title: 'Dashboard',
-                            role: 'Guest',
+                            roles: ['Admin'],
                         },
                     },
                     {
@@ -58,8 +74,9 @@ const routes: Array<RouteRecordRaw> = [
                         component: () => import('@/views/TimesheetView.vue'),
                         name: 'TimesheetView',
                         meta: {
+                            requiresAuth: true,
                             title: 'Dashboard',
-                            role: 'Guest',
+                            roles: ['Admin'],
                         },
                     },
                     {
@@ -67,8 +84,9 @@ const routes: Array<RouteRecordRaw> = [
                         component: () => import('@/views/ChatView.vue'),
                         name: 'ChatView',
                         meta: {
+                            requiresAuth: true,
                             title: 'Chat',
-                            role: 'Guest',
+                            roles: ['Admin'],
                         },
                     },
                 ],

@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "yakkajobs",
+    "site": "yakkaadmin",
     "public": "dist",
     "ignore": [
       "firebase.json",
